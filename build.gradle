@@ -5,7 +5,7 @@ apply plugin: 'nexus'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = '0.1.0'
+version = '0.1.0-SNAPSHOT'
 group   = "fr.cea.ig.microscope.client.model"
 
 
@@ -32,7 +32,7 @@ task sourceJar(type: Jar) {
 jar {
     manifest.attributes provider: 'genoscope'
     baseName = 'microscope-client-model'
-    version = '0.1.0'
+    version = '0.1.0-SNAPSHOT'
 }
 
 
@@ -105,6 +105,7 @@ test {
 task createWrapper(type: Wrapper) {
     gradleVersion = '1.7'
 }
+
 dependencies {
     compile     group: 'org.springframework',               name: 'spring-web',                 version: '4.0.6.RELEASE'
     compile     group: 'com.fasterxml.jackson.core',        name: 'jackson-databind',           version: '2.4.1.3'
