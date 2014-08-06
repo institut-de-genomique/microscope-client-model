@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+version = '0.1.0'
+group   = "fr.cea.ig.microscope.client.model"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+
+jar {
+    baseName    = 'microscope-client-model
+    version     = '0.1.0'
+}
+
