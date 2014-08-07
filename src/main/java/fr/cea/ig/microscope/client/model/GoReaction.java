@@ -1,4 +1,4 @@
-package fr.cea.ig.grools.microscope;
+package fr.cea.ig.microscope.client.model;
 
 
 public class GoReaction {

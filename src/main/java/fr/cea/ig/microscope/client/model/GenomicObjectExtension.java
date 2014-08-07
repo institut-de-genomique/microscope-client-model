@@ -1,4 +1,4 @@
-package fr.cea.ig.grools.microscope;
+package fr.cea.ig.microscope.client.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.DateSerializer;

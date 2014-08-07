@@ -1,4 +1,4 @@
-package fr.cea.ig.grools.microscope;
+package fr.cea.ig.microscope.client.model;
 
 import org.springframework.web.client.RestTemplate;
 
