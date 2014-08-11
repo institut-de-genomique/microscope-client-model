@@ -2,11 +2,13 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'nexus'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-version = '0.1.0-SNAPSHOT'
-group   = "fr.cea.ig.microscope.client.model"
+sourceCompatibility     = 1.8
+targetCompatibility     = 1.8
+version                 = '0.1.0-SNAPSHOT'
+group                   = "fr.cea.ig.microscope.client.model"
+def projectName         = 'microscope-client-model'
+def projectDescription  = 'Microscope object used while query microscope remote api'
+def projectUrl          = 'https://github.com/institut-de-genomique/microscope-model-client'
 
 
 task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
@@ -19,20 +21,28 @@ task packageSources(type: Jar) {
     classifier = 'sources'
 }
 
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+
+dependencies {
+    compile     group: 'org.springframework',               name: 'spring-web',                 version: '4.0.6.RELEASE'
+    compile     group: 'com.fasterxml.jackson.core',        name: 'jackson-databind',           version: '2.4.1.3'
+}
+
 artifacts {
     archives jar
     archives packageJavadoc
     archives packageSources
 }
 
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
-}
-
 jar {
     manifest.attributes provider: 'genoscope'
-    baseName = 'microscope-client-model'
-    version = '0.1.0-SNAPSHOT'
+    manifest.attributes 'Created-By': 'LABGeM'
+    manifest.attributes 'Product-Name': projectName
+    baseName    = projectName
+    version     = version
 }
 
 
@@ -40,7 +50,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven {
-        url "https://gsphere.genoscope.cns.fr/nexus/content/groups/public"
+        url 'https://gsphere.genoscope.cns.fr/nexus/content/groups/public'
     }
 }
 
@@ -57,31 +67,31 @@ buildscript {
 
 modifyPom {
     project {
-        name 'microscope-model-client'
-        description 'Microscope object used while query microscope remote api'
-        url 'https://github.com/institut-de-genomique/microscope-model-client'
-        inceptionYear '2013'
+        name            projectName
+        description     projectDescription
+        url             projectUrl
+        inceptionYear   '2014'
 
         scm {
-            url 'https://github.com/institut-de-genomique/microscope-model-client'
-            connection 'scm:https://github.com/institut-de-genomique/microscope-model-client.git'
+            url                 'https://github.com/institut-de-genomique/microscope-model-client'
+            connection          'scm:https://github.com/institut-de-genomique/microscope-model-client.git'
             developerConnection 'scm:git@github.com:institut-de-genomique/microscope-model-client.git'
         }
 
         licenses {
             license {
-                name 'CeCILL-C'
-                url 'http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.txt'
-                distribution 'repo'
+                name            'CeCILL'
+                url             'http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.html'
+                distribution    'repo'
             }
         }
 
         developers {
             developer {
-                id 'jmercier'
-                name 'Jonathan MERCIER'
-                email 'jmercier@genoscope.cns.fr'
-                timezone '+1'
+                id              'jmercier'
+                name            'Jonathan MERCIER'
+                email           'jmercier@genoscope.cns.fr'
+                timezone        '+1'
             }
         }
     }
@@ -95,19 +105,3 @@ nexus {
     repositoryUrl           = 'https://gsphere.genoscope.cns.fr/nexus/content/repositories/releases/'
     snapshotRepositoryUrl   = 'https://gsphere.genoscope.cns.fr/nexus/content/repositories/snapshots/'
 }
-
-test {
-  testLogging {
-    exceptionFormat "full"
-  }
-}
-
-task createWrapper(type: Wrapper) {
-    gradleVersion = '1.7'
-}
-
-dependencies {
-    compile     group: 'org.springframework',               name: 'spring-web',                 version: '4.0.6.RELEASE'
-    compile     group: 'com.fasterxml.jackson.core',        name: 'jackson-databind',           version: '2.4.1.3'
-}
-
